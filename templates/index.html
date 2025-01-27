@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+ChronoWeek 前端界面
+作者：liqian_liukaining
+日期：2025-01-27
+-->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoWeek 精准日历</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- 输入面板 -->
+        <div class="input-panel">
+            <div class="header">
+                <i class="fas fa-calendar-alt"></i>
+                <h1>ChronoWeek</h1>
+            </div>
+
+            <form id="dateForm" class="input-group">
+                <div class="input-field">
+                    <label for="dateInput"><i class="fas fa-calendar-day"></i> 输入日期</label>
+                    <input
+                        type="text"
+                        id="dateInput"
+                        name="date"
+                        placeholder="YYYY-MM-DD 或 YYYY/MM/DD"
+                        required
+                        pattern="\d{4}[-\/]\d{2}[-\/]\d{2}"
+                    >
+                    <div class="input-hint">示例：2023-10-16 或 2023/10/16</div>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-search"></i> 查询
+                </button>
+            </form>
+
+            <div id="errorMsg" class="error-msg"></div>
+        </div>
+
+        <!-- 结果面板 -->
+        <div class="result-panel">
+            <div class="result-card">
+                <div class="card-header">
+                    <i class="fas fa-clock"></i>
+                    <span>查询结果</span>
+                </div>
+                <div id="resultContent" class="card-body">
+                    <div class="placeholder">
+                        <i class="fas fa-hand-pointer"></i>
+                        <p>在左侧输入日期开始查询</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('dateForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const errorDiv = document.getElementById('errorMsg');
+            const resultDiv = document.getElementById('resultContent');
+
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    errorDiv.textContent = '';
+                    resultDiv.innerHTML = `
+                        <div class="result-date">${data.date}</div>
+                        <div class="result-weekday">${data.weekday}</div>
+                    `;
+                } else {
+                    errorDiv.textContent = data.error;
+                    resultDiv.innerHTML = `
+                        <div class="placeholder">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>请输入有效日期</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                errorDiv.textContent = '服务器连接失败，请稍后重试';
+                resultDiv.innerHTML = `
+                    <div class="placeholder">
+                        <i class="fas fa-unlink"></i>
+                        <p>网络连接异常</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

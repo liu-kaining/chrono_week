@@ -1,0 +1,190 @@
+/* ChronoWeek 样式表 */
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --success: #27ae60;
+    --error: #e74c3c;
+    --background: #f8f9fa;
+    --text: #2d3436;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui;
+}
+
+body {
+    background: var(--background);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+.input-panel {
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary), #34495e);
+    border-radius: 1rem;
+    color: white;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-field {
+    position: relative;
+}
+
+.input-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.input-field input:focus {
+    outline: none;
+    border-color: var(--secondary);
+    background: rgba(255,255,255,0.2);
+}
+
+.input-hint {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+    margin-top: 0.5rem;
+}
+
+.submit-btn {
+    padding: 1rem;
+    background: var(--secondary);
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+}
+
+.error-msg {
+    color: var(--error);
+    margin-top: 1rem;
+    min-height: 1.5rem;
+    font-weight: 500;
+}
+
+.result-panel {
+    padding: 2rem;
+}
+
+.result-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    background: var(--primary);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.25rem;
+}
+
+.card-body {
+    padding: 2rem;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-date {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.result-weekday {
+    font-size: 2rem;
+    color: var(--success);
+    font-weight: 700;
+}
+
+.placeholder {
+    text-align: center;
+    color: var(--text);
+    opacity: 0.5;
+}
+
+.placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .result-date {
+        font-size: 1.2rem;
+    }
+
+    .result-weekday {
+        font-size: 1.5rem;
+    }
+}
