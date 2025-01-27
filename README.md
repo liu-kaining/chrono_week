@@ -1,4 +1,3 @@
-
 # ChronoWeek - 智能万年历系统
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
@@ -7,7 +6,7 @@
 ![Responsive](https://img.shields.io/badge/Responsive-Yes-success)
 
 **开发者**：liqian_liukaining  
-**最后更新**：2025年01月27日  
+**最后更新**：2023年10月16日  
 
 ## 🌐 项目概述
 ChronoWeek 是基于Flask构建的精准日期计算系统，提供以下核心能力：
@@ -31,19 +30,29 @@ graph LR
 ## ✨ 核心特性
 
 ### 精准日期处理
-
+```python
+# 验证逻辑示例
+class DateValidator:
+    @staticmethod
+    def validate(date_str):
+        # 双重校验：正则匹配 + 物理日期验证
+        pass
+```
 - 自动处理闰年（如2020-02-29）
 - 月份天数校验（如拦截2023-02-30）
 - 年份边界控制（1-9999年）
 
 ### 安全防护体系
-
+```bash
+输入防护流程：
+原始输入 → 格式消毒 → 类型转换 → 范围校验 → 结果输出
+```
 - 正则表达式过滤：`r'^\d{4}[-\/]\d{2}[-\/]\d{2}$'`
 - 自动补零处理（将2023/8/5转换为2023-08-05）
 - 输出内容转义防护
 
 ### 现代交互界面
-
+![界面预览](/screenshots/layout.png)
 - 双面板分屏设计（输入/结果分离）
 - FontAwesome图标集成
 - 动态错误提示系统
@@ -104,10 +113,6 @@ flask run --host=0.0.0.0 --port=5000
 ## 📜 开源协议
 本项目采用 [MIT License](LICENSE)，允许自由使用和修改，但需保留原作者信息。
 
----
-**企业定制版**：支持批量日期处理API（联系 author@example.com）  
-**科研扩展**：儒略历转换模块开发中（预计2024 Q1发布）
-```
 
 ## 📁 推荐目录结构
 ```
@@ -123,13 +128,3 @@ ChronoWeek/
 │   └── index.html         
 └── screenshots/           # 界面截图
     └── demo.png           
-```
-
-该文档包含：
-1. 技术架构可视化说明
-2. 交互界面预览
-3. 多平台兼容性报告
-4. 企业级扩展方案
-5. 科研发展方向
-6. 完整的部署指南
-7. 标准化开源协议声明
